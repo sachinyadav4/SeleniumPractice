@@ -1,4 +1,4 @@
-package org.seleniumautomation.com;
+package org.seleniumautomation.com.ex01_18122024;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
