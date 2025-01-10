@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Selenium22 {
@@ -13,32 +15,36 @@ public class Selenium22 {
     public void testmethod01() throws InterruptedException {
 
         EdgeDriver driver = new EdgeDriver();
-        driver.get("https://www.idrive360.com/enterprise/login");
+        driver.get("https://www.ebay.com/b/Desktops-All-In-One-Computers/171957/bn_1643067");
 
-        Thread.sleep(3000L);
+      //  Thread.sleep(3000L);
 
-        WebElement username = driver.findElement(By.id("username"));
-        username.sendKeys("augtest_040823@idrive.com");
+        WebElement searchInput = driver.findElement(By.xpath("//input[@id='gh-ac']"));
+        searchInput.sendKeys("macmini");
 
-        WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("123456");
+       WebElement searchBtn = driver.findElement(By.xpath("//input[@value='Search']"));
+       searchBtn.click();
+
+       List<WebElement> searchTitles = driver.findElements(By.xpath("//div[@class='s-item__title']"));
+
+       List<WebElement> searchTitlesPrices = driver.findElements(By.xpath("//span[@class='s-item__price']"));
+
+       int size = Math.min(searchTitles.size(), searchTitlesPrices.size());
+
+       for(int i=0; i<size; i++){
+
+           System.out.println("Title: " + searchTitles.get(i).getText() + " || " + " Price: " +
+                   searchTitlesPrices.get(i).getText());
 
 
-        WebElement signinBtn =  driver.findElement(By.id("frm-btn"));
-        signinBtn.click();
+       }
 
-        Thread.sleep(16000L);
+        //Assert.assertEquals(error_msg.getText(), "The email address you entered is incorrect.");
 
-        System.out.println(driver.findElement(By.id("upgrade")).getText());
-
-        /*WebElement error_msg = driver.findElement(By.className("invalid-reason"));
-
-        Assert.assertEquals(error_msg.getText(), "The email address you entered is incorrect.");
-*/
         //assertj
-        assertThat(driver.findElement(By.id("upgrade")).getText()).isNotNull().isNotEmpty().contains("Your free trial has expired");
+       // assertThat(driver.findElement(By.id("upgrade")).getText()).isNotNull().isNotEmpty().contains("Your free trial has expired");
 
-           driver.quit();
+         //  driver.quit();
 
 
     }

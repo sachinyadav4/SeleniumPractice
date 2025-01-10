@@ -2,11 +2,10 @@ package org.seleniumautomation.com.ex07_05012025;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
 
-public class Selenium24_JS_demo2 {
+public class Selenium24_WebTable_Static {
 
     @Test
     public void testmethod1() throws InterruptedException {
@@ -14,21 +13,33 @@ public class Selenium24_JS_demo2 {
         EdgeDriver driver = new EdgeDriver();
         driver.manage().window().maximize();
 
-        String url = "https://selectorshub.com/xpath-practice-page/";
+        String url = "https://awesomeqa.com/webtable.html";
         driver.get(url);
         driver.manage().window().maximize();
 
-        JavascriptExecutor js;
-        js = (JavascriptExecutor) driver;
+        int rows = driver.findElements(By.xpath("//table[@id='customers']/tbody/tr")).size();
+        int columns = driver.findElements(By.xpath("//table[@id='customers']/tbody/tr[2]/td")).size();
 
 
-        js.executeScript("window.scrollBy(0, 500);");
+        String tableCell_Start = "//table[@id='customers']/tbody/tr[";
+        String tableCell_Mid = "]/td[";
+        String tableCell_End = "]";
 
-        String url2 = js.executeScript("return document.URL;").toString();
-        String title = js.executeScript("return document.title;").toString();
+        // i = row count
+        // j = column count
 
-        System.out.println(url2);
-        System.out.println(title);
+        for(int i=2; i<= rows; i++) {
+            for(int j=1; j<=columns; j++){
+                String dynamic_xpath = tableCell_Start + i + tableCell_Mid + j + tableCell_End;
+                String cellValue = driver.findElement(By.xpath(dynamic_xpath)).getText();
+
+                if(cellValue.contains("Helen Bennett")) {
+                    System.out.println("Finding Country: ");
+                    System.out.println(driver.findElement(By.xpath(dynamic_xpath + "/following-sibling::td")).getText());
+                }
+            }
+            System.out.println();
+        }
 
     }
 }

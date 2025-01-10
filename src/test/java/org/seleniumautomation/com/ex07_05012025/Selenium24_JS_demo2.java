@@ -1,13 +1,12 @@
 package org.seleniumautomation.com.ex07_05012025;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
 
-public class Selenium24_JS_ShadowDom {
+public class Selenium24_JS_demo2 {
 
     @Test
     public void testmethod1() throws InterruptedException {
@@ -22,13 +21,14 @@ public class Selenium24_JS_ShadowDom {
         JavascriptExecutor js;
         js = (JavascriptExecutor) driver;
 
-        WebElement div_to_scroll = driver.findElement(By.xpath("//div[@id='userName']"));
 
-        js.executeScript("arguments[0].scrollIntoView(true);", div_to_scroll);
+        js.executeScript("window.scrollBy(0, 500);");
 
+        String url2 = js.executeScript("return document.URL;").toString();
+        String title = js.executeScript("return document.title;").toString();
 
-        WebElement inputboxPizza = (WebElement) js.executeScript("return document.querySelector(\"div#userName\").shadowRoot.querySelector(\"div#app2\").shadowRoot.querySelector(\"#pizza\");");
-        inputboxPizza.sendKeys("farmhouse");
+        System.out.println(url2);
+        System.out.println(title);
 
     }
 }

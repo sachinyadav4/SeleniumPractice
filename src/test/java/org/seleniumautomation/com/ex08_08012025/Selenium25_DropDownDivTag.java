@@ -1,4 +1,4 @@
-package org.seleniumautomation.com.ex05_03012025;
+package org.seleniumautomation.com.ex08_08012025;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class CRMTask {
+public class Selenium25_DropDownDivTag {
 
 
     @Test
@@ -30,13 +30,13 @@ public class CRMTask {
         createContact.click();
 
 
-        WebElement btnSave = driver.findElement(By.cssSelector("button[data-action='save']"));
-        btnSave.click();
+        WebElement mobileDropDown = driver.findElement(By.xpath("//div[@data-value='Mobile']/ancestor::div[contains(@class, 'selectize-input')]"));
+        mobileDropDown.click();
 
-        WebElement message  = driver.findElement(By.cssSelector("div[class='message']"));
-        System.out.println("Error Message: " + message.getText());
-        Assert.assertEquals(message.getText(), "Not valid");
+        WebElement mobileDropDownOffice = driver.findElement(By.xpath("//div[@data-value='Office']"));
+        mobileDropDownOffice.click();
 
-        driver.quit();
+
+        //driver.quit();
     }
 }

@@ -1,19 +1,13 @@
 package org.seleniumautomation.com.ex06_04012025;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-import java.util.function.Function;
-
-public class Selenium24_SelectOptions {
+public class Selenium24_JSAlerts {
 
     @Test
     public void testmethod1() throws InterruptedException {
@@ -21,19 +15,29 @@ public class Selenium24_SelectOptions {
         EdgeDriver driver = new EdgeDriver();
         driver.manage().window().maximize();
 
-        driver.get("https://the-internet.herokuapp.com/dropdown");
+        driver.get("https://the-internet.herokuapp.com/javascript_alerts");
 
-        WebElement dropDown = driver.findElement(By.xpath("//select[@id='dropdown']"));
+        WebElement jsAlert = driver.findElement(By.xpath("//button[@onclick='jsAlert()']"));
+        WebElement jsConfirm = driver.findElement(By.xpath("//button[@onclick='jsConfirm()']"));
+        WebElement jsPrompt = driver.findElement(By.xpath("//button[@onclick='jsPrompt()']"));
 
-        Select select = new Select(dropDown);
-        select.selectByIndex(2);
-
+        jsAlert.click();
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
         Thread.sleep(2000);
 
-        select.selectByValue("1");
-
+        jsConfirm.click();
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
         Thread.sleep(2000);
 
-        select.selectByVisibleText("Option 2");
+        jsPrompt.click();
+        Thread.sleep(2000);
+        Alert alert =  driver.switchTo().alert();
+        alert.sendKeys("test data");
+        Thread.sleep(2000);
+        alert.accept();
+        Thread.sleep(2000);
+
     }
 }

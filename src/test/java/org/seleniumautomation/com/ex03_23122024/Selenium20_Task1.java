@@ -18,6 +18,8 @@ public class Selenium20_Task1 {
         EdgeDriver driver = new EdgeDriver();
         driver.get("https://katalon-demo-cura.herokuapp.com/");
 
+        driver.findElement(By.id(""));
+
         //find and click appointment button
         WebElement btn_appointment = driver.findElement(By.id("btn-make-appointment"));
         btn_appointment.click();

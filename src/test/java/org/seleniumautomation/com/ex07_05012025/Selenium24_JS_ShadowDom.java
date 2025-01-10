@@ -1,13 +1,13 @@
-package org.seleniumautomation.com.ex06_04012025;
+package org.seleniumautomation.com.ex07_05012025;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
-public class Selenium24_JSAlerts {
+public class Selenium24_JS_ShadowDom {
 
     @Test
     public void testmethod1() throws InterruptedException {
@@ -15,29 +15,20 @@ public class Selenium24_JSAlerts {
         EdgeDriver driver = new EdgeDriver();
         driver.manage().window().maximize();
 
-        driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+        String url = "https://selectorshub.com/xpath-practice-page/";
+        driver.get(url);
+        driver.manage().window().maximize();
 
-        WebElement jsAlert = driver.findElement(By.xpath("//button[@onclick='jsAlert()']"));
-        WebElement jsConfirm = driver.findElement(By.xpath("//button[@onclick='jsConfirm()']"));
-        WebElement jsPrompt = driver.findElement(By.xpath("//button[@onclick='jsPrompt()']"));
+        JavascriptExecutor js;
+        js = (JavascriptExecutor) driver;
 
-        jsAlert.click();
-        Thread.sleep(2000);
-        driver.switchTo().alert().accept();
-        Thread.sleep(2000);
+        WebElement div_to_scroll = driver.findElement(By.xpath("//div[@id='userName']"));
 
-        jsConfirm.click();
-        Thread.sleep(2000);
-        driver.switchTo().alert().accept();
-        Thread.sleep(2000);
+        js.executeScript("arguments[0].scrollIntoView(true);", div_to_scroll);
 
-        jsPrompt.click();
-        Thread.sleep(2000);
-        Alert alert =  driver.switchTo().alert();
-        alert.sendKeys("test data");
-        Thread.sleep(2000);
-        alert.accept();
-        Thread.sleep(2000);
+
+        WebElement inputboxPizza = (WebElement) js.executeScript("return document.querySelector(\"div#userName\").shadowRoot.querySelector(\"div#app2\").shadowRoot.querySelector(\"#pizza\");");
+        inputboxPizza.sendKeys("farmhouse");
 
     }
 }
