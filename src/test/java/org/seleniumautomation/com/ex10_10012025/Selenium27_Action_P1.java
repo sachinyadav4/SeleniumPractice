@@ -14,7 +14,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
-public class Selenium27_Action_Windows_Iframe_P1 {
+public class Selenium27_Action_P1 {
 
     EdgeDriver driver;
 

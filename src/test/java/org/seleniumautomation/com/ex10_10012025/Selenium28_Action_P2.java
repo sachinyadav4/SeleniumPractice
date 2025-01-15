@@ -7,7 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class Selenium28_Action_Windows_Iframe_P2 {
+public class Selenium28_Action_P2 {
 
     EdgeDriver driver;
 
