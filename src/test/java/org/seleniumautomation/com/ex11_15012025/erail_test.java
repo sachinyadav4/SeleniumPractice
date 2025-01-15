@@ -1,4 +1,4 @@
-package org.seleniumautomation.com.ex10_15012025;
+package org.seleniumautomation.com.ex11_15012025;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
