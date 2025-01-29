@@ -1,6 +1,7 @@
 package org.seleniumautomation.com.ex11_15012025;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -30,6 +31,11 @@ public class erail_test {
         List<WebElement> fromStationSearchResult = driver.findElements(By.xpath("//div[@class='autocomplete']/child::div"));
 
         System.out.println(fromStationSearchResult.get(3).getText());
+
+        for(int i=0; i<=2; i++) {
+            actions.keyDown(Keys.ARROW_DOWN).build().perform();
+        }
+        actions.sendKeys(Keys.ENTER).build().perform();
 
     }
 }
